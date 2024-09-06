@@ -1,7 +1,9 @@
-export default function Sidebar() {
-  return (
-    <div className="sidebar">
-      <div className="sidebar__top"></div>
-    </div>
-  );
+import { ReactNode } from "react";
+
+export default function Sidebar({ children }: { children: ReactNode }) {
+  return <div className="sidebar">{children}</div>;
+}
+
+export function SideBarTop({ children }: { children: ReactNode }) {
+  return <div className="sidebar__top">{children}</div>;
 }
