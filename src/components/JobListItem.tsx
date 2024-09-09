@@ -1,21 +1,12 @@
+import { TJobItem } from "../lib/types";
 import BookmarkIcon from "./BookmarkIcon";
 
-type TJobItem = {
-  id: number;
-  badgeLetters: string;
-  title: string;
-  company: string;
-  date: string;
-  relevanceScore: number;
-  daysAgo: number;
-}
-
 type JobListItemProps = {
-  jobItem: TJobItem 
-}
+  jobItem: TJobItem;
+};
 
-export default function JobListItem({jobItem}: JobListItemProps) {
-  console.log(jobItem)
+export default function JobListItem({ jobItem }: JobListItemProps) {
+  console.log(jobItem);
   return (
     <li className="job-item">
       <a className="job-item__link">

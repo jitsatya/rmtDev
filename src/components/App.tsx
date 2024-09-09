@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Background from "./Background";
 import Container from "./Container";
 import Footer from "./Footer";
@@ -12,24 +12,11 @@ import Pagination from "./PaginationControls";
 import JobList from "./JobList";
 import ResultsCount from "./ResultsCount";
 import Sorting from "./SortingControls";
+import { useJobItems } from "../lib/hooks";
 
 function App() {
-  const [jobItems, setJobItems] = useState([]);
   const [searchText, setSearchText] = useState("");
-
-  useEffect(() => {
-    if (!searchText) return;
-    const fetchData = async () => {
-      const response = await fetch(
-        `https://bytegrad.com/course-assets/projects/rmtdev/api/data?search=${searchText}`
-      );
-
-      const data = await response.json();
-
-      setJobItems(data.jobItems);
-    };
-    fetchData();
-  }, [searchText]);
+  const [jobItems, isLoading] = useJobItems(searchText);
   return (
     <>
       <Background />
@@ -48,7 +35,7 @@ function App() {
             <Sorting />
           </SideBarTop>
 
-          <JobList jobItems={jobItems} />
+          <JobList jobItems={jobItems} isLoading={isLoading} />
           <Pagination />
         </Sidebar>
         <JobItemContent />
